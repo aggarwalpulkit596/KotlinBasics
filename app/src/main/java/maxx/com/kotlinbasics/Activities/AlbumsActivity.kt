@@ -1,13 +1,14 @@
 package maxx.com.kotlinbasics.Activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_albums.*
+import maxx.com.kotlinbasics.API.Client
 import maxx.com.kotlinbasics.Adapters.AlbumsAdapter
 import maxx.com.kotlinbasics.Models.Album
 import maxx.com.kotlinbasics.R
+import maxx.com.kotlinbasics.Utils.retrofitcallback
 
 class AlbumsActivity : AppCompatActivity() {
 
@@ -19,5 +20,13 @@ class AlbumsActivity : AppCompatActivity() {
 
         rvAlbumsList.layoutManager = LinearLayoutManager(this);
         rvAlbumsList.adapter = albumsAdapter
+
+        Client.api.albums.enqueue(retrofitcallback { t, resp ->
+            resp?.body()?.let {
+                albumsAdapter.setAlbums(it)
+
+            }
+
+        })
     }
 }
