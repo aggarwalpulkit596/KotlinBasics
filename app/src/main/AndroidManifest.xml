@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.AlbumsActivity" />
+        <activity android:name=".Activities.PostActivity" />
+        <activity android:name=".Activities.TodosActivity" />
+        <activity android:name=".Activities.UsersActivity"></activity>
     </application>
 
 </manifest>
